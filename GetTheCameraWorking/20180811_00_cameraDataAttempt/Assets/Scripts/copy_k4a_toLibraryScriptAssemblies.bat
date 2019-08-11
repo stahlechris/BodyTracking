@@ -1,0 +1,1 @@
+copy /-Y "..\Plugins\k4a.dll" "..\..\Library\ScriptAssemblies\k4a.dll"
