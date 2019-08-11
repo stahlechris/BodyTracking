@@ -41,7 +41,7 @@ namespace zeroonetwo
         public extern static k4a_wait_result_t k4a_device_get_capture(IntPtr device_handle, out IntPtr capture_handle, Int32 timeout_in_ms);
 
 		internal IntPtr capture_handle = IntPtr.Zero; // 
-		Int32 timeout_in_ms = 10000;
+		Int32 timeout_in_ms = 20000;
 
 		DeviceConfiguration defaultConfigDisableAll;
 		
@@ -79,13 +79,14 @@ namespace zeroonetwo
 
 
 			var config = getDefaultConfig();
-			// config.camera_fps       = K4A_FRAMES_PER_SECOND_15;
-			// config.color_format     = K4A_IMAGE_FORMAT_COLOR_BGRA32;
-			// config.color_resolution = K4A_COLOR_RESOLUTION_3072P;
+			// config.CameraFps = Fps._5;
+			config.DepthMode = DepthMode.WideFOV_2x2_Binned;
+			config.ColorResolution = ColorResolution._720P;
 
 			k4a_device_start_cameras(device_handle, ref config);
 
 			// Camera capture and application specific code would go here
+			
 			k4a_wait_result_t result_getCapture = k4a_device_get_capture(device_handle, out capture_handle, timeout_in_ms);
 			switch (result_getCapture)
 			{
